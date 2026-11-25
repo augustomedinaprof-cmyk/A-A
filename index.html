@@ -39,6 +39,8 @@
 
 /* Interfaz de Aracelli: no se exponen controles técnicos, ni indicadores de conexión. */
 #settingsTop,#settingsSide,#configureFromNotes,#syncBanner{display:none!important}
+#shareAppAuto{border-color:#edb4cb;color:#a63f69;background:#fff4f8}#shareAppAuto[hidden]{display:none!important}
+@media(max-width:680px){.messages-card-head{flex-wrap:wrap;gap:10px}.messages-card-head h3{flex-basis:100%}#shareAppAuto{flex:1}}
 .voucher-icon svg{display:block;width:43px;height:43px;overflow:visible}
 .modal-big-emoji svg{display:block;width:72px;height:72px;margin:0 auto}
 
@@ -91,7 +93,7 @@
       <section id="screen-vales" class="screen" hidden><div class="page-small-head"><div class="eyebrow">Un regalo que no se termina</div><h1 class="title">Tus vales de <em>amor.</em> 🎟️</h1><p class="lead">Elegí un vale y enviáselo a quien amás. Le aparecerá en su aplicación cuando esté conectado y también cuando vuelva a entrar. ♡</p></div><div class="voucher-persona"><strong>¿Quién está enviando? 💌</strong><div class="who-tabs"><button type="button" data-author="Aracelli">🌷 Soy Aracelli</button><button type="button" data-author="Tu gordo">💗 Soy tu gordo</button></div></div>
 <div class="received-vouchers" id="receivedVoucherPanel"><div class="received-vouchers-head"><h3>💝 Vales que me llegaron</h3><span id="receivedCount" class="voucher-tag">0 recibidos</span></div><p class="hint">Los vales que te envíen se guardan aquí. No vencen nunca. ♡</p><div class="received-vouchers-list" id="receivedVoucherList"></div></div>
 <div id="voucherFilters" class="filter-row"></div><div id="voucherGrid" class="voucher-grid"></div></section>
-      <section id="screen-mensajes" class="screen" hidden><div class="page-small-head"><div class="eyebrow">Para escribirnos siempre</div><h1 class="title">Nuestro <em>buzón.</em> 💌</h1><p class="lead">Este es nuestro lugar para dejar un «te amo», una idea, un pensamiento o lo que nos nazca. Podemos volver a leerlos cuando queramos.</p></div><div class="notes-layout"><div class="write-card"><h3>Dejame unas palabras</h3><p class="muted">Elegí quién escribe. Los mensajes se ordenan desde el más reciente.</p><label class="input-label">¿Quién está escribiendo?</label><div class="who-tabs"><button id="authorAracelli" type="button" class="active" data-author="Aracelli">🌷 Aracelli</button><button id="authorGordo" type="button" data-author="Tu gordo">💗 Tu gordo</button></div><label for="noteText" class="input-label">Tu mensajito</label><textarea id="noteText" maxlength="800" placeholder="Hoy quería decirte que..." aria-label="Escribí tu mensaje"></textarea><div class="write-footer"><span id="charCount" class="char-count">0 / 800</span><button type="button" class="pill-button small" id="saveMessage">Guardar 💌</button></div><div id="syncBanner" class="sync-banner"><strong>Modo personal</strong> Los mensajes se guardan en este dispositivo. Activá la sincronización para verlos desde ambos celulares.</div><button type="button" class="outline-btn" id="configureFromNotes" aria-hidden="true" tabindex="-1">Conectar</button></div><div class="messages-card"><div class="messages-card-head"><h3>Lo que nos escribimos</h3><button type="button" class="outline-btn" id="refreshMessages">↻ Actualizar</button></div><p class="muted">Todas esas pequeñas palabras que vale la pena guardar. ♡</p><div id="messageList" class="message-list"></div></div></div></section>
+      <section id="screen-mensajes" class="screen" hidden><div class="page-small-head"><div class="eyebrow">Para escribirnos siempre</div><h1 class="title">Nuestro <em>buzón.</em> 💌</h1><p class="lead">Este es nuestro lugar para dejar un «te amo», una idea, un pensamiento o lo que nos nazca. Podemos volver a leerlos cuando queramos.</p></div><div class="notes-layout"><div class="write-card"><h3>Dejame unas palabras</h3><p class="muted">Elegí quién escribe. Los mensajes se ordenan desde el más reciente.</p><label class="input-label">¿Quién está escribiendo?</label><div class="who-tabs"><button id="authorAracelli" type="button" class="active" data-author="Aracelli">🌷 Aracelli</button><button id="authorGordo" type="button" data-author="Tu gordo">💗 Tu gordo</button></div><label for="noteText" class="input-label">Tu mensajito</label><textarea id="noteText" maxlength="800" placeholder="Hoy quería decirte que..." aria-label="Escribí tu mensaje"></textarea><div class="write-footer"><span id="charCount" class="char-count">0 / 800</span><button type="button" class="pill-button small" id="saveMessage">Guardar 💌</button></div><div id="syncBanner" class="sync-banner"><strong>Modo personal</strong> Los mensajes se guardan en este dispositivo. Activá la sincronización para verlos desde ambos celulares.</div><button type="button" class="outline-btn" id="configureFromNotes" aria-hidden="true" tabindex="-1">Conectar</button></div><div class="messages-card"><div class="messages-card-head"><h3>Lo que nos escribimos</h3><button type="button" class="outline-btn" id="refreshMessages">↻ Actualizar</button><button type="button" class="outline-btn" id="shareAppAuto" hidden>💌 Compartir con Aracelli</button></div><p class="muted">Todas esas pequeñas palabras que vale la pena guardar. ♡</p><div id="messageList" class="message-list"></div></div></div></section>
       <section id="screen-sorpresas" class="screen" hidden><div class="page-small-head"><div class="eyebrow">Pequeñas cosas para hacerte feliz</div><h1 class="title">Sorpresitas para <em>vos.</em> ✨</h1><p class="lead">No hay preguntas ni desafíos: solo detalles tiernos para jugar un ratito con el amor.</p></div><div class="magic-grid"><div class="magic-box"><span class="magic-big">♡</span><span class="sparkle">💌</span><h3>Frasquito de amor</h3><p>Abrí un papelito y encontrá una de las cosas que quiero decirte.</p><button type="button" class="pill-button small" id="openJar">Sacar un papelito</button><div id="jarResult" class="magic-result" hidden></div></div><div class="magic-box violet"><span class="magic-big">✨</span><span class="sparkle">🌷</span><h3>¿Qué hacemos juntos?</h3><p>Una idea al azar para nuestra próxima cita o un ratito compartido.</p><button type="button" class="pill-button small" id="rollPlan">Elegir un plan</button><div id="planResult" class="magic-result" hidden></div></div></div><div class="love-wall"><strong>Que siempre nos sobren motivos para sonreír. 💗</strong><p>Tu gordo te ama muchísimo, mi bebé.</p></div></section>
     </main>
   </div></div>
@@ -282,7 +284,7 @@ function showSettings(){const s=$('settingsStatus');s.textContent=settings.url?'
 ['settingsSide','settingsTop','configureFromNotes'].forEach(id=>$(id).addEventListener('click',showSettings));
 // La configuración no se muestra en la interfaz normal. Para el dueño: ?configurar=1
 if(new URLSearchParams(location.search).get('configurar')==='1'){window.addEventListener('DOMContentLoaded',()=>{showSettings()},{once:true})}
-async function readSettingsAndTest(){const url=$('apiInput').value.trim();const secret=$('secretInput').value.trim();if(!/^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec(?:\?.*)?$/.test(url)){toast('Pegá una URL /exec válida de Google Apps Script');return false}if(secret.length<4){toast('La clave necesita al menos 4 caracteres');return false}settings={url,secret};setLocal('sync',settings);$('settingsStatus').textContent='Probando conexión…';const good=await refreshRemote();$('settingsStatus').textContent=good?'✓ ¡Conectados! Pueden compartir el mismo enlace y la misma clave.':'No conectó. Revisá el despliegue de Apps Script, la URL y la clave.';return good}
+async function readSettingsAndTest(){const url=$('apiInput').value.trim();const secret=$('secretInput').value.trim();if(!/^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec(?:\?.*)?$/.test(url)){toast('Pegá una URL /exec válida de Google Apps Script');return false}if(secret.length<4){toast('La clave necesita al menos 4 caracteres');return false}settings={url,secret};setLocal('sync',settings);$('shareAppAuto').hidden=false;$('settingsStatus').textContent='Probando conexión…';const good=await refreshRemote();$('settingsStatus').textContent=good?'✓ ¡Conectados! Pueden compartir el mismo enlace y la misma clave.':'No conectó. Revisá el despliegue de Apps Script, la URL y la clave.';return good}
 $('saveConfig').addEventListener('click',async()=>{if(await readSettingsAndTest()){toast('¡Buzón conectado! 💌');closeOverlay('settingsOverlay')}});$('testConfig').addEventListener('click',readSettingsAndTest);
 $('createInvite').addEventListener('click',async()=>{
   const status=$('inviteStatus');
@@ -313,6 +315,29 @@ $('createInvite').addEventListener('click',async()=>{
   }
 });
 
+// Enlace de invitación para conectar otros dispositivos sin escribir claves ni direcciones.
+// La clave NO está insertada en el HTML público: se incorpora solo al enlace privado
+// generado en un navegador que ya fue conectado por el usuario.
+$('shareAppAuto').addEventListener('click',async()=>{
+  if(!settings.url||!settings.secret){toast('Abrí esta opción desde el navegador que ya tiene el buzón conectado.');return}
+  if(location.protocol!=='https:'||location.hostname===''){
+    toast('Abrí la app publicada en GitHub Pages para compartir el enlace.');return;
+  }
+  if(!connected){const ok=await refreshRemote();if(!ok){toast('No pude comprobar la conexión. Intentá de nuevo.');return}}
+  const link=new URL(location.href);
+  link.searchParams.delete('configurar');
+  link.hash='conectar?'+new URLSearchParams({url:settings.url,key:settings.secret}).toString();
+  const shared=link.toString();
+  try{
+    await navigator.clipboard.writeText(shared);
+    toast('Enlace copiado 💌 Enviáselo a Aracelli y abrilo también en tu celular.');
+  }catch(error){
+    try{
+      if(navigator.share){await navigator.share({title:'Nuestro rinconcito ❤️',text:'Un lugarcito nuestro 💗',url:shared});return}
+    }catch(error2){if(error2.name==='AbortError')return}
+    window.prompt('Copiá este enlace y enviáselo por privado a Aracelli:',shared);
+  }
+});
 function pickDifferent(list,previous){if(list.length<2)return list[0];let idx=Math.floor(Math.random()*list.length);if(list[idx]===previous)idx=(idx+1)%list.length;return list[idx]}
 $('homeSurprise').addEventListener('click',()=>{$('homeNote').textContent=pickDifferent(LOVE_NOTES,$('homeNote').textContent);sparkHearts()});
 $('missButton').addEventListener('click',()=>{toast('Te mando un abrazo gigante, mi bebé 🤗');sparkHearts()});
@@ -323,7 +348,7 @@ async function tryPlay(){if(!song.paused)return true;try{await song.play();music
 $('musicToggle').addEventListener('click',async()=>{if(song.paused){const good=await tryPlay();if(!good)toast('Tu navegador bloquea la música automática.')}else{song.pause();$('musicLabel').textContent='Activar música';$('musicToggle').classList.add('music-off')}});
 song.addEventListener('pause',()=>{if(song.paused){$('musicLabel').textContent='Activar música';$('musicToggle').classList.add('music-off')}});
 document.addEventListener('pointerdown',ev=>{if(song.paused&&!musicStarted&&!ev.target.closest('#musicToggle'))tryPlay()},{passive:true});
-window.addEventListener('DOMContentLoaded',()=>{initImages();selectAuthor(author);renderMessages();renderVouchers();navigate((location.hash||'#inicio').slice(1));if(settings.url&&settings.secret)refreshRemote();if(joinedByInvite)setTimeout(()=>toast('¡Bienvenida! Nuestro buzón ya está vinculado 💌'),1000);setTimeout(tryPlay,500)});
+window.addEventListener('DOMContentLoaded',()=>{$('shareAppAuto').hidden=!(settings.url&&settings.secret);initImages();selectAuthor(author);renderMessages();renderVouchers();navigate((location.hash||'#inicio').slice(1));if(settings.url&&settings.secret)refreshRemote();if(joinedByInvite)setTimeout(()=>toast('¡Bienvenida! Nuestro buzón ya está vinculado 💌'),1000);setTimeout(tryPlay,500)});
 window.addEventListener('focus',()=>{if(settings.url&&settings.secret)refreshRemote()});
 setInterval(()=>{if(!document.hidden&&settings.url&&settings.secret)refreshRemote()},15000);
 </script>
