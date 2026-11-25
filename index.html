@@ -64,6 +64,31 @@
 .voucher-alert{position:fixed;z-index:80;right:16px;bottom:18px;max-width:min(360px,calc(100vw - 32px));border:1px solid #ecc1d3;background:#fff4f9;box-shadow:0 12px 42px #6f2f4f66;border-radius:18px;padding:14px 17px;color:#7d3159;font-weight:800;font-size:13px;cursor:pointer}
 .voucher-alert[hidden]{display:none!important}
 @media(max-width:680px){.received-vouchers-list{grid-template-columns:1fr}.voucher-persona .who-tabs{min-width:100%}.voucher-alert{bottom:88px}}
+
+/* Álbum vivo: nuevas fotos desde cualquier celular */
+.album-toolbar{display:flex;align-items:center;justify-content:space-between;gap:13px;flex-wrap:wrap;margin:0 0 19px;padding:17px 19px;border-radius:22px;background:linear-gradient(118deg,#ffe5ee,#ffeff4 54%,#fff2e3);border:1px solid #f6ccd9;box-shadow:0 10px 32px #ce789622}
+.album-toolbar .album-desc{font-size:13px;color:#875d72;line-height:1.6;margin:7px 0 0;max-width:600px}
+.album-counter{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#a14b75;font-weight:900}
+.album-upload-btn{border:0;border-radius:999px;background:linear-gradient(110deg,#d94378,#ae356b);color:#fff;padding:13px 21px;font-size:14px;font-weight:850;box-shadow:0 9px 20px #c7618a58;white-space:nowrap}
+.album-upload-btn:hover{filter:brightness(1.06)}
+.album-status{min-height:18px;font-size:12px;color:#9b7285;margin:0 0 14px}
+.photo-tile .photo-caption-flag{position:absolute;left:10px;bottom:43px;right:10px;padding:7px 9px;background:#fffaf8e8;backdrop-filter:blur(5px);border-radius:11px;color:#924a6c;font-size:10px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.photo-tile .new-photo-label{background:#b73b6bea;color:#fff}
+.photo-tile .photo-loading{display:flex;align-items:center;justify-content:center;height:100%;min-height:140px;color:#ba7e97;font-size:30px;background:linear-gradient(135deg,#ffe8ef,#fae4f7)}
+.photo-modal .photo-detail{font-size:12px;line-height:1.6;color:#986b80;margin:10px auto 0;max-width:540px;text-align:center}
+.photo-modal .photo-detail strong{display:block;color:#7d3b59;font-size:13px}
+.photo-remove-btn{margin:10px auto 0;display:block;background:transparent;border:1px solid #e8c7d5;border-radius:100px;color:#a6637e;padding:8px 15px;font-size:12px;font-weight:700}
+.upload-modal{max-width:520px}
+.upload-modal h2{font:700 28px 'Fraunces',Georgia,serif;color:#74344f;margin:8px 0 8px}
+.upload-modal .upload-help{color:#95788a;font-size:13px;line-height:1.65;margin:0 0 17px}
+.upload-fields{display:grid;gap:13px}
+.upload-fields label{display:grid;gap:7px;font-size:12px;color:#8d5a72;font-weight:800}
+.upload-fields input[type=file],.upload-fields select,.upload-fields input[type=text]{width:100%;font:inherit;background:#fff;border:1px solid #ebcedb;color:#6b4055;border-radius:14px;padding:13px}
+#uploadPreview{width:100%;max-height:230px;object-fit:contain;border-radius:16px;background:#fff1f6;border:1px dashed #e6b4c7;display:none}
+#uploadPreview.visible{display:block}
+#uploadStatus{font-size:13px;line-height:1.5;color:#95546e;min-height:19px;margin:2px 0 0}
+#uploadSubmit{width:100%;margin-top:6px}
+@media(max-width:680px){.album-toolbar{padding:16px}.album-upload-btn{width:100%}}
 </style>
 </head>
 <body>
@@ -89,7 +114,12 @@
         <div class="quick-grid"><button class="quick" data-go="fotos"><span class="quick-emoji">📸</span><span><strong>Nuestras fotos</strong><small>Diecinueve pedacitos de felicidad</small></span><span class="arrow">↗</span></button><button class="quick" data-go="vales"><span class="quick-emoji">🎟️</span><span><strong>Vales de amor</strong><small>Canjeá todos los que quieras</small></span><span class="arrow">↗</span></button><button class="quick" data-go="mensajes"><span class="quick-emoji">💌</span><span><strong>Nuestro buzón</strong><small>Dejame algo para leer</small></span><span class="arrow">↗</span></button></div>
         <div class="home-bottom"><div class="soft-card pink"><span class="decor-heart">♡</span><span class="sparkle">✨</span><h3>Un mimo para hoy</h3><p id="homeNote">Cada día con vos es una excusa para sonreír.</p><button class="pill-button light small" id="homeSurprise">Otro mensajito ♥</button></div><div class="soft-card purple"><span class="sparkle">💞</span><h3>¿Te extraño?</h3><p>Apretá este botón cuando necesites un poquito más de amor.</p><button class="pill-button light small" id="missButton">Sí, mucho 🥹</button></div></div>
       </section>
-      <section id="screen-fotos" class="screen" hidden><div class="page-small-head"><div class="eyebrow">Nuestra pequeña galería</div><h1 class="title">Fotos que me hacen <em>sonreír.</em></h1><p class="lead">Tocá cualquier foto para verla bien grande. No cambié nuestras caras: son las fotos originales. Y quiero seguir sumando muchas más con vos. 💗</p></div><div id="gallery" class="gallery-grid"></div></section>
+      <section id="screen-fotos" class="screen" hidden>
+ <div class="page-small-head"><div class="eyebrow">Nuestro álbum de recuerdos</div><h1 class="title">Cada foto, <em>un pedacito nuestro.</em></h1><p class="lead">Un lugar para guardar recuerdos de los dos. Tocá una foto para verla grande y, cuando tengan una nueva, súbanla al álbum. ❤️</p></div>
+ <div class="album-toolbar"><div><div id="albumCount" class="album-counter">19 recuerdos juntos</div><p class="album-desc">📸 Vos y Aracelli pueden subir fotos desde sus celulares. Cuando uno agregue una, aparecerá en el álbum del otro.</p></div><button class="album-upload-btn" type="button" id="openPhotoUpload">＋ Subir una foto</button></div>
+ <div id="albumStatus" class="album-status" aria-live="polite"></div>
+ <div id="gallery" class="gallery-grid"></div>
+ </section>
       <section id="screen-vales" class="screen" hidden><div class="page-small-head"><div class="eyebrow">Un regalo que no se termina</div><h1 class="title">Tus vales de <em>amor.</em> 🎟️</h1><p class="lead">Elegí un vale y enviáselo a quien amás. Le aparecerá en su aplicación cuando esté conectado y también cuando vuelva a entrar. ♡</p></div><div class="voucher-persona"><strong>¿Quién está enviando? 💌</strong><div class="who-tabs"><button type="button" data-author="Aracelli">🌷 Soy Aracelli</button><button type="button" data-author="Tu gordo">💗 Soy tu gordo</button></div></div>
 <div class="received-vouchers" id="receivedVoucherPanel"><div class="received-vouchers-head"><h3>💝 Vales que me llegaron</h3><span id="receivedCount" class="voucher-tag">0 recibidos</span></div><p class="hint">Los vales que te envíen se guardan aquí. No vencen nunca. ♡</p><div class="received-vouchers-list" id="receivedVoucherList"></div></div>
 <div id="voucherFilters" class="filter-row"></div><div id="voucherGrid" class="voucher-grid"></div></section>
@@ -100,7 +130,12 @@
 </div>
 <nav class="mobile-nav" aria-label="Menú principal móvil"><button type="button" class="nav-btn active" data-screen="inicio"><span class="nav-icon">🏠</span>Inicio</button><button type="button" class="nav-btn" data-screen="fotos"><span class="nav-icon">📸</span>Fotos</button><button type="button" class="nav-btn" data-screen="vales"><span class="nav-icon">🎟️</span>Vales</button><button type="button" class="nav-btn" data-screen="mensajes"><span class="nav-icon">💌</span>Buzón</button><button type="button" class="nav-btn" data-screen="sorpresas"><span class="nav-icon">✨</span>Más</button></nav>
 
-<div class="overlay" id="photoOverlay" hidden role="dialog" aria-modal="true" aria-label="Ver fotografía"><div class="modal photo-modal"><button type="button" class="close-modal" data-close="photoOverlay" aria-label="Cerrar">×</button><img id="viewerImage" alt="Nuestro recuerdo ampliado"/><div class="photo-nav-row"><button id="prevPhoto">← Anterior</button><span id="viewerIndex">1 / 19</span><button id="nextPhoto">Siguiente →</button></div></div></div>
+<div class="overlay" id="photoOverlay" hidden role="dialog" aria-modal="true" aria-label="Ver fotografía"><div class="modal photo-modal"><button type="button" class="close-modal" data-close="photoOverlay" aria-label="Cerrar">×</button><img id="viewerImage" alt="Nuestro recuerdo ampliado"/><div class="photo-nav-row"><button id="prevPhoto">← Anterior</button><span id="viewerIndex">1 / 19</span><button id="nextPhoto">Siguiente →</button></div><div class="photo-detail" id="photoDetail"></div><button type="button" class="photo-remove-btn" id="deleteAlbumPhoto" hidden>Eliminar esta foto del álbum</button></div></div>
+<div class="overlay" id="uploadOverlay" hidden role="dialog" aria-modal="true" aria-label="Sumar una foto a nuestro álbum">
+ <div class="modal upload-modal"><button class="close-modal" type="button" data-close="uploadOverlay" aria-label="Cerrar">×</button><div class="eyebrow">Un recuerdo más para nosotros</div><h2>Sumemos una foto 📷</h2><p class="upload-help">Elegí una foto y, si querés, dejá una frase. Se guardará en nuestro álbum y ambos podrán verla.</p>
+ <div class="upload-fields"><label for="uploadFile">Elegí la foto<input id="uploadFile" type="file" accept="image/*"></label><img id="uploadPreview" alt="Vista previa de la fotografía elegida"><label for="uploadAuthor">¿Quién la está subiendo?<select id="uploadAuthor"><option value="Tu gordo">💗 Tu gordo</option><option value="Aracelli">🌷 Aracelli</option></select></label><label for="uploadCaption">Una frase para recordar (opcional)<input id="uploadCaption" type="text" maxlength="120" placeholder="Un momento que quiero guardar para siempre…"></label><div id="uploadStatus" aria-live="polite"></div><button class="pill-button" type="button" id="uploadSubmit">❤️ Guardar para los dos</button></div>
+ </div>
+</div>
 <div class="overlay" id="couponOverlay" hidden role="dialog" aria-modal="true" aria-label="Canjear vale"><div class="modal"><button type="button" class="close-modal" data-close="couponOverlay" aria-label="Cerrar">×</button><div class="modal-big-emoji" id="couponModalEmoji">💗</div><h2 id="couponModalTitle">Vale por un abrazo</h2><p id="couponModalText">Este vale no tiene fecha de vencimiento.</p><div class="recipient-line" id="couponRecipient"></div><div class="modal-actions"><button type="button" class="pill-button" id="confirmRedeem">Enviar vale 💌</button><button type="button" class="pill-button light" data-close="couponOverlay">Después</button></div></div></div>
 <div class="overlay" id="settingsOverlay" hidden role="dialog" aria-modal="true" aria-label="Configurar mensajes compartidos"><div class="modal"><button class="close-modal" type="button" data-close="settingsOverlay" aria-label="Cerrar">×</button><div class="eyebrow">Para guardar los mensajes entre los dos</div><h2>Conectar nuestro buzón ♡</h2><p>Para que los mensajes queden guardados y se vean desde los dos celulares, necesitamos conectar esta app con Google Sheets usando el archivo <strong>Code.gs</strong> que viene en el paquete.</p><div class="settings-form"><label for="apiInput">Enlace de tu aplicación de Google Apps Script (termina en /exec)</label><input id="apiInput" type="url" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="off"/><label for="secretInput">Clave compartida (la misma en los dos celulares)</label><input id="secretInput" type="password" placeholder="Una clave que solo sepan ustedes" autocomplete="off"/><p class="muted">La clave limita el acceso a los mensajes, pero no equivale a cifrado de extremo a extremo. No escriban datos demasiado privados.</p><div id="settingsStatus" class="sync-banner">Todavía no hay conexión configurada.</div><div class="modal-actions"><button type="button" class="pill-button" id="saveConfig">Guardar y conectar</button><button type="button" class="pill-button light" id="testConfig">Probar conexión</button></div><div style="margin-top:20px;padding:17px;background:#fff1f7;border:1px solid #f2d1df;border-radius:16px"><strong style="color:#83455f">💌 Invitar a Aracelli</strong><p class="muted">Una vez que el buzón esté conectado, copiá un enlace especial y mandáselo por privado. Al abrirlo desde su celular, se conectará automáticamente. Este enlace permite acceder a los mensajes: no lo compartas públicamente.</p><button type="button" class="pill-button small" id="createInvite">Copiar enlace privado para Aracelli</button><p class="muted" id="inviteStatus" aria-live="polite"></p></div></div></div></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div><div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
@@ -161,16 +196,67 @@ let toastTimer=null;
 const $=id=>document.getElementById(id);
 function toast(txt){const e=$('toast');e.textContent=txt;e.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>e.classList.remove('show'),3200)}
 function sparkHearts(){if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;const host=$('heartsLayer');for(let i=0;i<20;i++){const s=document.createElement('span');s.className='pop-heart';s.textContent=['♥','♡','💗','✨'][i%4];s.style.left=Math.round(Math.random()*95)+'%';s.style.animationDelay=(Math.random()*.5)+'s';s.style.fontSize=(14+Math.random()*25)+'px';host.appendChild(s);setTimeout(()=>s.remove(),2100)}}
-function navigate(name){if(!['inicio','fotos','vales','mensajes','sorpresas'].includes(name))name='inicio';activeScreen=name;document.querySelectorAll('.screen').forEach(el=>el.hidden=(el.id!=='screen-'+name));document.querySelectorAll('.nav-btn').forEach(el=>{const active=el.dataset.screen===name;el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});try{history.replaceState(null,'','#'+name)}catch{} window.scrollTo({top:0,behavior:'smooth'});if(name==='vales'){renderVouchers();markVouchersSeen()}if((name==='mensajes'||name==='vales')&&settings.url&&settings.secret)refreshRemote()}
+function navigate(name){if(!['inicio','fotos','vales','mensajes','sorpresas'].includes(name))name='inicio';activeScreen=name;document.querySelectorAll('.screen').forEach(el=>el.hidden=(el.id!=='screen-'+name));document.querySelectorAll('.nav-btn').forEach(el=>{const active=el.dataset.screen===name;el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});try{history.replaceState(null,'','#'+name)}catch{} window.scrollTo({top:0,behavior:'smooth'});if(name==='vales'){renderVouchers();markVouchersSeen()}if((name==='mensajes'||name==='vales')&&settings.url&&settings.secret)refreshRemote();if(name==='fotos')refreshAlbum()}
 document.querySelectorAll('[data-screen],[data-go]').forEach(btn=>btn.addEventListener('click',()=>navigate(btn.dataset.screen||btn.dataset.go)));
 function openOverlay(id){$(id).hidden=false;document.body.style.overflow='hidden'}
 function closeOverlay(id){$(id).hidden=true;document.body.style.overflow=''}
 document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>closeOverlay(btn.dataset.close)));
 document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',ev=>{if(ev.target===el)closeOverlay(el.id)}));
 document.addEventListener('keydown',ev=>{if(ev.key==='Escape')document.querySelectorAll('.overlay:not([hidden])').forEach(el=>closeOverlay(el.id));if(!$('photoOverlay').hidden){if(ev.key==='ArrowLeft')movePhoto(-1);if(ev.key==='ArrowRight')movePhoto(1)}});
-function initImages(){[0,1,2].forEach((i)=>{$('hero-photo-'+i).src=PHOTOS[[0,10,15][i]].src});const g=$('gallery');PHOTOS.forEach((p,i)=>{const b=document.createElement('button');b.className='photo-tile';b.type='button';b.setAttribute('aria-label','Abrir foto '+(i+1));const img=document.createElement('img');img.src=p.src;img.alt='Uno de nuestros recuerdos, foto '+(i+1);img.loading='lazy';const tag=document.createElement('span');tag.className='photo-num';tag.textContent='Recuerdo '+String(i+1).padStart(2,'0');b.append(img,tag);b.addEventListener('click',()=>showPhoto(i));g.appendChild(b)})}
-function showPhoto(i){viewing=(i+PHOTOS.length)%PHOTOS.length;$('viewerImage').src=PHOTOS[viewing].src;$('viewerIndex').textContent=(viewing+1)+' / '+PHOTOS.length;openOverlay('photoOverlay')}
-function movePhoto(step){showPhoto(viewing+step)}$('prevPhoto').addEventListener('click',()=>movePhoto(-1));$('nextPhoto').addEventListener('click',()=>movePhoto(1));
+// Fotos incorporadas desde Drive; las 19 originales siguen incluidas sin alterar sus caras.
+let albumPhotos=[];
+const albumImageCache=new Map();
+const albumLoads=new Map();
+let albumRefreshBusy=false,albumLoaded=false,albumPhotoSignature='',albumImageObserver=null;
+let albumSelectionId=null,albumPreviewUrl=null,albumUploadBusy=false,activeViewedPhoto=null;
+const originalPhotoItems=PHOTOS.map((p,i)=>({id:'original-'+i,original:true,src:p.src,author:'',caption:''}));
+const albumItems=()=>originalPhotoItems.concat(albumPhotos.map(p=>({...p,original:false})));
+function albumMessage(message){$('albumStatus').textContent=message}
+function initImages(){
+  [0,1,2].forEach(i=>{$('hero-photo-'+i).src=PHOTOS[[0,10,15][i]].src});
+  renderAlbum();
+}
+function renderAlbum(){
+  const items=albumItems(),g=$('gallery');
+  $('albumCount').textContent=items.length+' recuerdos juntos';
+  if(albumImageObserver)albumImageObserver.disconnect();
+  albumImageObserver=('IntersectionObserver' in window)?new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){albumImageObserver.unobserve(entry.target);const id=entry.target.dataset.albumId;loadAlbumImage(id).then(src=>{if(entry.target.isConnected && src)entry.target.src=src}).catch(()=>{entry.target.alt='Foto temporalmente no disponible'})}})
+  },{rootMargin:'250px'}):null;
+  g.innerHTML='';
+  items.forEach((p,i)=>{
+    const b=document.createElement('button');b.className='photo-tile';b.type='button';b.setAttribute('aria-label','Abrir foto '+(i+1));
+    const img=document.createElement('img');img.alt='Nuestro recuerdo '+(i+1);img.loading='lazy';
+    if(p.original){img.src=p.src}
+    else if(albumImageCache.has(p.id)){img.src=albumImageCache.get(p.id)}
+    else{img.dataset.albumId=p.id;img.style.background='linear-gradient(135deg,#ffe8ef,#f7dfea)';if(albumImageObserver)albumImageObserver.observe(img);else loadAlbumImage(p.id).then(src=>{if(img.isConnected)img.src=src}).catch(()=>{})}
+    const tag=document.createElement('span');tag.className='photo-num'+(p.original?'':' new-photo-label');tag.textContent=p.original?'Recuerdo '+String(i+1).padStart(2,'0'):'💗 '+p.author;
+    b.append(img,tag);
+    if(p.caption){const text=document.createElement('span');text.className='photo-caption-flag';text.textContent=p.caption;b.append(text)}
+    b.addEventListener('click',()=>showPhoto(i));g.appendChild(b);
+  });
+}
+function showPhoto(i){
+  const list=albumItems();if(!list.length)return;
+  viewing=(i+list.length)%list.length;
+  const photo=list[viewing];activeViewedPhoto=photo;
+  $('viewerIndex').textContent=(viewing+1)+' / '+list.length;
+  const details=$('photoDetail');details.textContent='';
+  if(photo.original){$('viewerImage').src=photo.src}
+  else{
+    const who=document.createElement('strong');who.textContent='Subida por '+photo.author;
+    details.appendChild(who);
+    if(photo.caption){const caption=document.createElement('span');caption.textContent=photo.caption;details.appendChild(caption)}
+    $('viewerImage').removeAttribute('src');$('viewerImage').alt='Cargando foto…';
+    const expected=photo.id;
+    loadAlbumImage(photo.id).then(src=>{if(activeViewedPhoto && activeViewedPhoto.id===expected){$('viewerImage').src=src;$('viewerImage').alt='Nuestro recuerdo ampliado'}}).catch(()=>{if(activeViewedPhoto && activeViewedPhoto.id===expected){details.textContent='No se pudo cargar. Revisá la conexión y volvé a abrir la foto.'}});
+  }
+  $('deleteAlbumPhoto').hidden=photo.original;
+  openOverlay('photoOverlay');
+}
+function movePhoto(step){showPhoto(viewing+step)}
+$('prevPhoto').addEventListener('click',()=>movePhoto(-1));$('nextPhoto').addEventListener('click',()=>movePhoto(1));
+
 // Google Sheets manda en los mensajes que ya fueron sincronizados.
 // Solo los mensajes nuevos, guardados en 'pendingSyncV2', pueden enviarse otra vez.
 // IMPORTANTE: los registros antiguos en 'events' son una copia de lectura,
@@ -338,6 +424,142 @@ $('shareAppAuto').addEventListener('click',async()=>{
     window.prompt('Copiá este enlace y enviáselo por privado a Aracelli:',shared);
   }
 });
+
+/* ===============================================================
+   Nuestro álbum vivo · fotos privadas en Drive a través de Apps Script
+   =============================================================== */
+function albumJsonp(action,extra={}){
+  return new Promise((resolve,reject)=>{
+    if(!settings.url||!settings.secret){reject(new Error('Primero conectá tu álbum con la invitación privada.'));return}
+    const cb='album_cb_'+Math.random().toString(36).slice(2);const script=document.createElement('script');let finished=false;
+    const timer=setTimeout(()=>end(new Error('La conexión tardó demasiado.')),18000);
+    function end(err,data){if(finished)return;finished=true;clearTimeout(timer);try{delete window[cb]}catch{}script.remove();err?reject(err):resolve(data)}
+    window[cb]=data=>end(null,data);
+    script.onerror=()=>end(new Error('No se pudo abrir el álbum en Google.'));
+    const url=new URL(settings.url);url.searchParams.set('action',action);url.searchParams.set('key',settings.secret);url.searchParams.set('callback',cb);
+    Object.keys(extra).forEach(key=>url.searchParams.set(key,String(extra[key])));
+    url.searchParams.set('_',String(Date.now()));script.src=url.href;document.head.appendChild(script);
+  });
+}
+async function refreshAlbum(opts={}){
+  if(!settings.url||!settings.secret){albumMessage('Para sumar fotos entre los dos, abrí primero la invitación privada del rinconcito. 💗');return false}
+  if(albumRefreshBusy)return false;
+  albumRefreshBusy=true;
+  if(!albumLoaded)albumMessage('Buscando nuestras fotos nuevas…');
+  try{
+    const res=await albumJsonp('photos');
+    if(!res || !res.ok)throw new Error(res&&res.error||'No se pudo obtener la lista de fotos.');
+    const photos=Array.isArray(res.photos)?res.photos.filter(p=>/^p[a-z0-9-]{10,60}$/.test(String(p.id||''))).map(p=>({
+      id:String(p.id),author:p.author==='Tu gordo'?'Tu gordo':'Aracelli',caption:String(p.caption||'').slice(0,120),date:String(p.date||'')
+    })):[];
+    const signature=JSON.stringify(photos.map(p=>[p.id,p.author,p.caption]));
+    const changed=signature!==albumPhotoSignature;
+    albumPhotos=photos;albumLoaded=true;
+    if(changed){albumPhotoSignature=signature;renderAlbum()}
+    if(opts.notify && changed && photos.length)toast('📸 ¡El álbum tiene nuevas fotos!');
+    albumMessage(photos.length?'Nuestros nuevos recuerdos ya están guardados para los dos. ♡':'Nuestro álbum está listo para recibir la próxima foto. ♡');
+    return true;
+  }catch(error){
+    albumMessage('No pude actualizar el álbum. Revisá si el código de Apps Script ya tiene activada la función de fotos.');
+    return false;
+  }finally{albumRefreshBusy=false}
+}
+async function loadAlbumImage(id){
+  if(albumImageCache.has(id))return albumImageCache.get(id);
+  if(albumLoads.has(id))return albumLoads.get(id);
+  const promise=albumJsonp('photo',{id}).then(data=>{
+    if(!data||!data.ok||!String(data.data||'').startsWith('data:image/jpeg;base64,'))throw new Error('La foto no pudo cargarse.');
+    albumImageCache.set(id,data.data);return data.data;
+  }).finally(()=>albumLoads.delete(id));
+  albumLoads.set(id,promise);return promise;
+}
+function openAlbumUploader(){
+  if(!settings.url||!settings.secret){toast('Para subir una foto primero abrí la invitación privada.');return}
+  $('uploadAuthor').value=author;
+  $('uploadStatus').textContent='';
+  openOverlay('uploadOverlay');
+}
+$('openPhotoUpload').addEventListener('click',openAlbumUploader);
+$('uploadFile').addEventListener('change',()=>{
+  albumSelectionId=null;
+  const file=$('uploadFile').files[0],preview=$('uploadPreview');
+  if(albumPreviewUrl)URL.revokeObjectURL(albumPreviewUrl);
+  preview.classList.remove('visible');
+  if(file){albumPreviewUrl=URL.createObjectURL(file);preview.src=albumPreviewUrl;preview.classList.add('visible');}
+});
+function loadImageForAlbum(file){return new Promise((resolve,reject)=>{
+  const url=URL.createObjectURL(file);const image=new Image();
+  image.onload=()=>{URL.revokeObjectURL(url);resolve(image)};
+  image.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('El celular no pudo abrir esta foto. Probá con JPG o PNG.'))};
+  image.src=url;
+})}
+async function encodeAlbumPhoto(file){
+  if(!file.type.startsWith('image/'))throw new Error('Elegí una imagen desde la galería.');
+  if(file.size>22*1024*1024)throw new Error('Esta foto es demasiado grande. Probá con otra.');
+  const image=await loadImageForAlbum(file);
+  let width=image.naturalWidth,height=image.naturalHeight;
+  if(!width||!height)throw new Error('No se pudo leer esta foto.');
+  const ratio=Math.min(1,1500/Math.max(width,height));width=Math.round(width*ratio);height=Math.round(height*ratio);
+  const canvas=document.createElement('canvas');const ctx=canvas.getContext('2d');
+  if(!ctx)throw new Error('Este navegador no puede preparar la foto.');
+  for(let attempt=0;attempt<8;attempt++){
+    canvas.width=width;canvas.height=height;ctx.fillStyle='#fff';ctx.fillRect(0,0,width,height);ctx.drawImage(image,0,0,width,height);
+    const quality=Math.max(.57,.82-attempt*.035);
+    const data=canvas.toDataURL('image/jpeg',quality).split(',')[1];
+    if(data && data.length<=525000)return data;
+    width=Math.max(300,Math.round(width*.84));height=Math.max(300,Math.round(height*.84));
+  }
+  throw new Error('No pude reducir esta foto. Probá con otra.');
+}
+async function postAlbumAction(payload){
+  if(!settings.url||!settings.secret)throw new Error('El álbum todavía no está conectado.');
+  await fetch(settings.url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({key:settings.secret,...payload})});
+}
+async function confirmPhotoAppeared(id,shouldExist){
+  for(let i=0;i<4;i++){
+    await new Promise(done=>setTimeout(done,1200+i*700));
+    const updated=await refreshAlbum();
+    if(updated && albumPhotos.some(p=>p.id===id)===shouldExist)return true;
+  }
+  return false;
+}
+$('uploadSubmit').addEventListener('click',async()=>{
+  if(albumUploadBusy)return;
+  const file=$('uploadFile').files[0];if(!file){$('uploadStatus').textContent='Elegí una foto primero 💕';return}
+  albumUploadBusy=true;$('uploadSubmit').disabled=true;$('uploadSubmit').textContent='Guardando nuestro recuerdo…';
+  try{
+    const isReady=await refreshAlbum();
+    if(!isReady)throw new Error('Todavía falta actualizar y autorizar el álbum en Apps Script.');
+    $('uploadStatus').textContent='Preparando la foto para que cargue rápido…';
+    const jpeg=await encodeAlbumPhoto(file);
+    if(!albumSelectionId)albumSelectionId='p'+(window.crypto&&crypto.randomUUID?crypto.randomUUID().replace(/-/g,'').slice(0,20):Date.now().toString(36)+Math.random().toString(36).slice(2,12));
+    const id=albumSelectionId;
+    $('uploadStatus').textContent='Subiendo la foto a nuestro álbum…';
+    await postAlbumAction({action:'photo_upload',id,author:$('uploadAuthor').value,caption:$('uploadCaption').value.trim(),data:jpeg});
+    $('uploadStatus').textContent='Comprobando que quedó guardada para los dos…';
+    if(!(await confirmPhotoAppeared(id,true)))throw new Error('No pude confirmar que se haya guardado. Revisá la conexión; podés intentar de nuevo sin duplicar la foto.');
+    $('uploadStatus').textContent='❤️ ¡Foto guardada para los dos!';
+    toast('📸 ¡Nuestro álbum tiene un nuevo recuerdo!');
+    if(albumPreviewUrl){URL.revokeObjectURL(albumPreviewUrl);albumPreviewUrl=null}
+    $('uploadFile').value='';$('uploadCaption').value='';$('uploadPreview').classList.remove('visible');albumSelectionId=null;
+    sparkHearts();
+    setTimeout(()=>{if(!$('uploadOverlay').hidden)closeOverlay('uploadOverlay')},950);
+  }catch(error){$('uploadStatus').textContent=error.message||'No se pudo subir. Probá de nuevo.'}
+  finally{albumUploadBusy=false;$('uploadSubmit').disabled=false;$('uploadSubmit').textContent='❤️ Guardar para los dos'}
+});
+$('deleteAlbumPhoto').addEventListener('click',async()=>{
+  const photo=activeViewedPhoto;
+  if(!photo||photo.original)return;
+  if(!window.confirm('¿Eliminar esta foto del álbum de los dos? Ya no aparecerá en ninguno de los celulares.'))return;
+  const b=$('deleteAlbumPhoto');b.disabled=true;b.textContent='Eliminando…';
+  try{
+    await postAlbumAction({action:'photo_delete',id:photo.id});
+    if(!await confirmPhotoAppeared(photo.id,false))throw new Error('No se pudo confirmar el cambio. Intentá actualizar el álbum.');
+    albumImageCache.delete(photo.id);
+    closeOverlay('photoOverlay');toast('Foto eliminada del álbum.');
+  }catch(error){toast(error.message||'No se pudo eliminar la foto.')}
+  finally{b.disabled=false;b.textContent='Eliminar esta foto del álbum'}
+});
 function pickDifferent(list,previous){if(list.length<2)return list[0];let idx=Math.floor(Math.random()*list.length);if(list[idx]===previous)idx=(idx+1)%list.length;return list[idx]}
 $('homeSurprise').addEventListener('click',()=>{$('homeNote').textContent=pickDifferent(LOVE_NOTES,$('homeNote').textContent);sparkHearts()});
 $('missButton').addEventListener('click',()=>{toast('Te mando un abrazo gigante, mi bebé 🤗');sparkHearts()});
@@ -349,8 +571,9 @@ $('musicToggle').addEventListener('click',async()=>{if(song.paused){const good=a
 song.addEventListener('pause',()=>{if(song.paused){$('musicLabel').textContent='Activar música';$('musicToggle').classList.add('music-off')}});
 document.addEventListener('pointerdown',ev=>{if(song.paused&&!musicStarted&&!ev.target.closest('#musicToggle'))tryPlay()},{passive:true});
 window.addEventListener('DOMContentLoaded',()=>{$('shareAppAuto').hidden=!(settings.url&&settings.secret);initImages();selectAuthor(author);renderMessages();renderVouchers();navigate((location.hash||'#inicio').slice(1));if(settings.url&&settings.secret)refreshRemote();if(joinedByInvite)setTimeout(()=>toast('¡Bienvenida! Nuestro buzón ya está vinculado 💌'),1000);setTimeout(tryPlay,500)});
-window.addEventListener('focus',()=>{if(settings.url&&settings.secret)refreshRemote()});
+window.addEventListener('focus',()=>{if(settings.url&&settings.secret)refreshRemote();if(activeScreen==='fotos')refreshAlbum()});
 setInterval(()=>{if(!document.hidden&&settings.url&&settings.secret)refreshRemote()},15000);
+setInterval(()=>{if(!document.hidden&&activeScreen==='fotos'&&settings.url&&settings.secret)refreshAlbum({notify:true})},26000);
 </script>
 </body>
 </html>
